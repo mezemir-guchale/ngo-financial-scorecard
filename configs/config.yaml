@@ -1,0 +1,63 @@
+project:
+  name: "NGO Financial Health Scorecard"
+  version: "1.0.0"
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  num_ngos: 20
+  num_years: 5
+  start_year: 2021
+
+analysis:
+  kpis:
+    - program_expense_ratio
+    - admin_expense_ratio
+    - fundraising_efficiency
+    - working_capital_ratio
+    - revenue_growth
+    - donor_dependency
+    - reserves_months
+  thresholds:
+    program_expense_ratio:
+      green: 0.75
+      yellow: 0.65
+    admin_expense_ratio:
+      green: 0.15
+      yellow: 0.25
+    fundraising_efficiency:
+      green: 0.10
+      yellow: 0.20
+    working_capital_ratio:
+      green: 1.5
+      yellow: 1.0
+    revenue_growth:
+      green: 0.05
+      yellow: 0.0
+    donor_dependency:
+      green: 0.50
+      yellow: 0.75
+    reserves_months:
+      green: 6.0
+      yellow: 3.0
+
+scoring:
+  weights:
+    program_expense_ratio: 0.20
+    admin_expense_ratio: 0.10
+    fundraising_efficiency: 0.15
+    working_capital_ratio: 0.15
+    revenue_growth: 0.10
+    donor_dependency: 0.15
+    reserves_months: 0.15
+
+visualization:
+  output_dir: "reports/figures"
+  figsize: [12, 8]
+  dpi: 150
+  style: "seaborn-v0_8-whitegrid"
+
+logging:
+  level: "INFO"
+  log_dir: "reports/logs"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
