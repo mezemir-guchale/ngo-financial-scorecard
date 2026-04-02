@@ -439,7 +439,10 @@ with tab_table:
         return colors.get(val, "")
 
     rating_display_cols = ["Overall Rating"] + [f"{KPI_LABELS[k]} Rating" for k in KPI_COLS]
-    styled = table_df.style.applymap(_color_rating, subset=rating_display_cols).format(precision=4)
+    try:
+        styled = table_df.style.map(_color_rating, subset=rating_display_cols).format(precision=4)
+    except AttributeError:
+        styled = table_df.style.applymap(_color_rating, subset=rating_display_cols).format(precision=4)
     st.dataframe(styled, use_container_width=True, height=650)
 
     st.download_button(
